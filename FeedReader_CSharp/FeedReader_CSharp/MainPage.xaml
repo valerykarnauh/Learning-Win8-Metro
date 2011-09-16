@@ -1,0 +1,58 @@
+﻿<UserControl x:Class="FeedReader.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="using:FeedReader"
+    mc:Ignorable="d"
+    d:DesignHeight="768" d:DesignWidth="1366">
+    
+    <UserControl.Resources>
+        <local:DateConverter x:Key="dateConverter" />
+    </UserControl.Resources>
+    
+    <Grid x:Name="LayoutRoot" Background="#FF0C0C0C">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="140" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        
+        <!-- Title -->
+        <TextBlock x:Name="TitleText" Text="{Binding Path=Title}"
+                   VerticalAlignment="Center" FontSize="48" Margin="56,0,0,0" />
+        
+        <!-- Content -->
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*" MinWidth="320" />
+                <ColumnDefinition Width="3*" />
+            </Grid.ColumnDefinitions>
+            
+            <ListView x:Name="ItemListView"
+                      ItemsSource="{Binding Path=Items}"
+                      SelectionChanged="ItemListView_SelectionChanged"
+                      Margin="10,0,0,10">
+                
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Grid.Column="1" Margin="25,0,0,0">
+                            <TextBlock Text="{Binding Path=Title}" FontSize="24" Margin="5,0,0,0" TextWrapping="Wrap" />
+                            <TextBlock Text="{Binding Path=Author}" FontSize="16" Margin="5,0,0,0" />
+                            <TextBlock Text="{Binding Path=PubDate, Converter={StaticResource dateConverter}}" FontSize="16" Margin="5,0,0,0" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            
+            <Grid DataContext="{Binding ElementName=ItemListView, Path=SelectedItem}"
+                  Grid.Column="1" Margin="25,0,0,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <TextBlock Text="{Binding Path=Title}" FontSize="24" />
+                <WebView x:Name="ContentView" Grid.Row="1" Margin="0,5,20,20" />
+            </Grid>
+        </Grid>
+    </Grid>
+</UserControl>

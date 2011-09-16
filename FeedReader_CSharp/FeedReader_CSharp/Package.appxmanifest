@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Package xmlns="http://schemas.microsoft.com/appx/2010/manifest">
+  <Identity Name="c893eb51-084f-4120-81ad-5b2fc7703cfe" Publisher="CN=neil" Version="1.0.0.0" />
+  <Properties>
+    <DisplayName>FeedReader_CSharp</DisplayName>
+    <PublisherDisplayName>neil</PublisherDisplayName>
+    <Logo>Images\StoreLogo.png</Logo>
+    <Description>FeedReader_CSharp</Description>
+  </Properties>
+  <Prerequisites>
+    <OSMinVersion>6.2</OSMinVersion>
+    <OSMaxVersionTested>6.2</OSMaxVersionTested>
+  </Prerequisites>
+  <Resources>
+    <Resource Language="en-us" />
+  </Resources>
+  <Applications>
+    <Application Id="App" Executable="feedreader-csharp.exe" EntryPoint="FeedReader..App">
+      <VisualElements DisplayName="Feed Reader" Logo="Images\Logo.png" SmallLogo="Images\SmallLogo.png" Description="Simple Demo app implementation of an RSS Feed Reader" ForegroundText="light" BackgroundColor="#222222" InitialRotationPreference="portrait">
+        <SplashScreen Image="Images\SplashScreen.png" />
+      </VisualElements>
+    </Application>
+  </Applications>
+  <Capabilities>
+    <Capability Name="internetClient" />
+  </Capabilities>
+</Package>
